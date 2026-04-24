@@ -23,7 +23,7 @@ struct ContentView: View {
                 
                 // --- 1. THE CHECK-IN SECTION ---
                 VStack(alignment: .leading, spacing: 15) {
-                    Text("How's your vibe?")
+                    Text("How are you feeling?")
                         .font(.title2)
                         .bold()
                     
@@ -32,11 +32,11 @@ struct ContentView: View {
                         .tint(moodColor(for: Int(moodScore)))
                     
                     HStack {
-                        Text("Low").font(.caption)
+                        Text("Sad").font(.caption)
                         Spacer()
                         Text("\(Int(moodScore))").font(.headline)
                         Spacer()
-                        Text("High").font(.caption)
+                        Text("Happy").font(.caption)
                     }
                     
                     // --- 2. DYNAMIC PROMPTING ---
@@ -45,7 +45,7 @@ struct ContentView: View {
                         .italic()
                         .foregroundColor(.secondary)
                     
-                    TextField("Write a small note...", text: $noteText, axis: .vertical)
+                    TextField("Write a quick note...", text: $noteText, axis: .vertical)
                         .textFieldStyle(.roundedBorder)
                         .lineLimit(3)
                     
@@ -65,7 +65,7 @@ struct ContentView: View {
 
                 // --- 3. COLOR-CODED HISTORY ---
                 List {
-                    Section("Your History") {
+                    Section("History") {
                         ForEach(entries) { entry in
                             HStack {
                                 Circle()
@@ -91,12 +91,16 @@ struct ContentView: View {
 
     // Logic for the dynamic question
     private var dynamicPrompt: String {
-        if moodScore >= 4 {
-            return "What made today special?"
-        } else if moodScore <= 2 {
-            return "What happened today?"
-        } else {
+        if moodScore == 1 {
+            return "Oh no, what made today feel like this?"
+        } else if moodScore == 2 {
+            return "Rough day, what happened?"
+        } else if moodScore == 3 {
             return "Anything worth noting?"
+        } else if moodScore == 4 {
+            return "Pretty good day, care to share?"
+        } else {
+            return "Awesome, what's the occasion?"
         }
     }
 
