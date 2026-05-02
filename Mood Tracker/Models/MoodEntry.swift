@@ -2,7 +2,7 @@
 //  MoodEntry.swift
 //  Mood Tracker
 //
-//  Created by Salvador Nuno on 4/23/26.
+//  Made by Salvador Nuno and Brandon Livdahl
 //
 
 import Foundation
